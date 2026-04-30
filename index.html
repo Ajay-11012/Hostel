@@ -83,6 +83,43 @@
         .zoom-in { animation: zoomIn 0.6s ease-out forwards; }
         .float { animation: float 3s ease-in-out infinite; }
 
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .animate-on-scroll.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .section-title,
+        .section-subtitle,
+        .hero-content,
+        .hero-image,
+        .gallery-card,
+        .contact-info-card,
+        .contact-form,
+        .cta-section,
+        .room-card,
+        .amenity-card,
+        .testimonial-card {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .in-view {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        .hero .hero-image .main-card,
+        .hero .hero-badge {
+            animation: float 3.5s ease-in-out infinite;
+        }
+        .hero .hero-badge {
+            animation-delay: 0.2s;
+        }
+
         /* Navbar */
         .navbar {
             background: rgba(255,255,255,0.98);
@@ -576,8 +613,24 @@
         function openContactForm(){scrollToSection('contact');}
         function showToast(msg,type='success'){const t=document.createElement('div');t.className='toast';t.style.background=type==='error'?'var(--danger)':'var(--dark)';t.innerHTML=`<i class="fas ${type==='success'?'fa-check-circle':'fa-exclamation-circle'}"></i> ${msg}`;document.body.appendChild(t);setTimeout(()=>t.remove(),3000);}
         window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
+
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.18 });
+
+            document.querySelectorAll('.section, .section-title, .section-subtitle, .hero-content, .hero-image, .gallery-card, .contact-info-card, .contact-form, .cta-section, .room-card, .amenity-card, .testimonial-card').forEach(el => {
+                el.classList.add('animate-on-scroll');
+                observer.observe(el);
+            });
+        }
         
-        renderRooms(); renderAmenities(); renderGallery(); renderTestimonials(); updateUI();
+        renderRooms(); renderAmenities(); renderGallery(); renderTestimonials(); updateUI(); initScrollAnimations();
     </script>
 </body>
 </html>
