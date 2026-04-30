@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sri Narayana Swamy Hostel | Premium PG Accommodation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --warning: #f97316;
+            --dark: #0f172a;
+            --gray-800: #1e293b;
+            --gray-700: #334155;
+            --gray-600: #475569;
+            --gray-500: #64748b;
+            --gray-400: #94a3b8;
+            --gray-100: #f1f5f9;
+            --white: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .fade-up { animation: fadeInUp 0.6s ease-out; }
+        .slide-left { animation: slideInLeft 0.5s ease-out; }
+        .float { animation: float 3s ease-in-out infinite; }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .btn {
+            padding: 0.6rem 1.4rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover { background: var(--primary); color: white; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(16,185,129,0.1));
+            border-radius: 2rem;
+            margin-bottom: 3rem;
+        }
+        .hero h1 { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--dark), var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+        }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .room-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .room-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); }
+        .room-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        .room-info { padding: 1.5rem; }
+        .room-price { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-available { background: #d1fae5; color: #065f46; }
+        .badge-booked { background: #fee2e2; color: #991b1b; }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 2000;
+            animation: slideInLeft 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        @media (max-width: 768px) {
+            .navbar-container { flex-direction: column; gap: 1rem; }
+            .hero h1 { font-size: 2rem; }
+            .rooms-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo"><i class="fas fa-building"></i> Sri Narayana Swamy Hostel</div>
+            <div class="nav-links" id="navLinks">
+                <a href="#" onclick="loadPage('home')">Home</a>
+                <a href="#" onclick="loadPage('rooms')">Rooms</a>
+                <a href="#" onclick="loadPage('amenities')">Amenities</a>
+                <a href="#" onclick="loadPage('contact')">Contact</a>
+                <div id="authButtons">
+                    <button class="btn btn-outline" onclick="showLoginModal()">Login</button>
+                    <button class="btn btn-primary" onclick="showRegisterModal()">Register</button>
+                </div>
+                <div id="userInfo" style="display: none;">
+                    <span id="userNameDisplay"></span>
+                    <button class="btn btn-outline" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="appContainer"></div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div style="background: white; max-width: 400px; width: 90%; padding: 2rem; border-radius: 1.5rem;">
+            <h2>Login</h2>
+            <input type="text" id="loginEmail" placeholder="Email or Username" style="width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <input type="password" id="loginPassword" placeholder="Password" style="width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="login()">Login</button>
+            <p style="margin-top: 1rem;">Demo: admin/admin123 or member/member123</p>
+            <button onclick="closeModal('loginModal')" style="margin-top: 1rem; background: none; border: none; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div style="background: white; max-width: 450px; width: 90%; padding: 2rem; border-radius: 1.5rem;">
+            <h2>Register as Member</h2>
+            <input type="text" id="regName" placeholder="Full Name" style="width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <input type="text" id="regUsername" placeholder="Username" style="width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <input type="email" id="regEmail" placeholder="Email" style="width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <input type="password" id="regPassword" placeholder="Password" style="width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <input type="tel" id="regPhone" placeholder="Phone Number" style="width: 100%; padding: 0.75rem; margin: 0.5rem 0; border: 1px solid #ddd; border-radius: 0.5rem;">
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="register()">Register</button>
+            <button onclick="closeModal('registerModal')" style="margin-top: 1rem; background: none; border: none; cursor: pointer;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // ============ REALISTIC DATA ============
+        let currentUser = null;
+        
+        // Users database
+        let users = [
+            { id: 1, username: 'admin', email: 'admin@hostel.com', password: 'admin123', full_name: 'Rajesh Sharma (Owner)', phone: '9876543210', role: 'admin', avatar: '👨‍💼', join_date: '2020-01-15' },
+            { id: 2, username: 'rahul_k', email: 'rahul@student.com', password: 'member123', full_name: 'Rahul Kumar', phone: '9876543211', role: 'member', avatar: '👨‍🎓', join_date: '2024-06-10' },
+            { id: 3, username: 'priya_s', email: 'priya@student.com', password: 'pass123', full_name: 'Priya Sharma', phone: '9876543212', role: 'member', avatar: '👩‍🎓', join_date: '2024-07-15' }
+        ];
+
+        // Rooms data with real details
+        let rooms = [
+            { id: 1, room_number: '101A', room_type: 'Premium Single', ac_type: 'ac', capacity: 1, price_per_month: 15000, status: 'available', description: 'Luxury AC room with attached bathroom, study table, wardrobe, and balcony', amenities: ['AC', 'Attached Bath', 'Study Table', 'Wifi', 'Geyser'], floor: '1st Floor', size: '180 sq ft', image_icon: '❄️' },
+            { id: 2, room_number: '101B', room_type: 'Deluxe Single', ac_type: 'non-ac', capacity: 1, price_per_month: 8000, status: 'available', description: 'Spacious non-AC room with excellent ventilation and modern furniture', amenities: ['Ceiling Fan', 'Attached Bath', 'Study Table', 'Wifi'], floor: '1st Floor', size: '150 sq ft', image_icon: '🌬️' },
+            { id: 3, room_number: '102A', room_type: 'Premium Double', ac_type: 'ac', capacity: 2, price_per_month: 22000, status: 'booked', description: 'AC double sharing room perfect for friends, includes bunk beds and storage', amenities: ['AC', 'Shared Bath', 'Bunk Beds', 'Wifi', 'Common Area'], floor: '1st Floor', size: '220 sq ft', image_icon: '❄️' },
+            { id: 4, room_number: '102B', room_type: 'Executive Suite', ac_type: 'ac', capacity: 1, price_per_month: 18000, status: 'available', description: 'Premium executive suite with king bed, personal refrigerator, and attached balcony', amenities: ['AC', 'Attached Bath', 'Refrigerator', 'Balcony', 'Study Desk'], floor: '2nd Floor', size: '200 sq ft', image_icon: '👑' },
+            { id: 5, room_number: '103', room_type: 'Budget Dorm', ac_type: 'non-ac', capacity: 4, price_per_month: 5000, status: 'available', description: 'Economical dormitory with separate lockers and common washroom', amenities: ['Bunk Beds', 'Lockers', 'Common Bath', 'Study Hall'], floor: 'Ground Floor', size: '300 sq ft', image_icon: '🏘️' },
+            { id: 6, room_number: '201', room_type: 'Premium Single', ac_type: 'ac', capacity: 1, price_per_month: 16000, status: 'available', description: 'Newly renovated AC room with smart TV and ergonomic chair', amenities: ['AC', 'Smart TV', 'Attached Bath', 'Wifi', 'Mini Fridge'], floor: '2nd Floor', size: '190 sq ft', image_icon: '📺' },
+            { id: 7, room_number: '202', room_type: 'Double Deluxe', ac_type: 'ac', capacity: 2, price_per_month: 20000, status: 'available', description: 'AC double room with separate study areas and personal cupboards', amenities: ['AC', 'Study Tables', 'Cupboards', 'Wifi', 'Geyser'], floor: '2nd Floor', size: '210 sq ft', image_icon: '❄️' }
+        ];
+
+        // Bookings with real data
+        let bookings = [
+            { id: 1, user_id: 2, room_id: 3, check_in: '2024-08-01', duration: 6, total_amount: 132000, status: 'approved', payment_status: 'completed', booking_date: '2024-07-20' }
+        ];
+
+        // Complaints
+        let complaints = [
+            { id: 1, user_id: 2, title: 'Water supply issue', description: 'No hot water in morning hours', status: 'resolved', created_at: '2024-09-10', response: 'Fixed the geyser' },
+            { id: 2, user_id: 2, title: 'Wifi connectivity', description: 'Slow internet in room 102', status: 'processing', created_at: '2024-09-15', response: null }
+        ];
+
+        // Announcements
+        let announcements = [
+            { id: 1, title: '🎉 Diwali Celebration', content: 'Join us for Diwali party on Oct 28th! Special sweets and cultural events planned.', priority: 'high', created_at: '2024-09-20', author: 'Admin' },
+            { id: 2, title: '🍽️ New Menu Launch', content: 'North Indian thali now available for dinner. New chef joins from October.', priority: 'medium', created_at: '2024-09-18', author: 'Mess Manager' },
+            { id: 3, title: '📢 Maintenance Notice', content: 'Annual maintenance on Oct 5th. Power shutdown from 10 AM to 2 PM.', priority: 'low', created_at: '2024-09-15', author: 'Admin' }
+        ];
+
+        // Payments
+        let payments = [
+            { id: 1, booking_id: 1, user_id: 2, amount: 22000, month: 'September 2024', status: 'completed', date: '2024-09-01' }
+        ];
+
+        function showToast(msg, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}" style="color: ${type === 'success' ? '#10b981' : '#ef4444'}"></i> ${msg}`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function saveData() {
+            localStorage.setItem('hostel_users', JSON.stringify(users));
+            localStorage.setItem('hostel_rooms', JSON.stringify(rooms));
+            localStorage.setItem('hostel_bookings', JSON.stringify(bookings));
+            localStorage.setItem('hostel_complaints', JSON.stringify(complaints));
+            localStorage.setItem('hostel_announcements', JSON.stringify(announcements));
+        }
+
+        function loadData() {
+            const u = localStorage.getItem('hostel_users');
+            if (u) users = JSON.parse(u);
+            const r = localStorage.getItem('hostel_rooms');
+            if (r) rooms = JSON.parse(r);
+            const b = localStorage.getItem('hostel_bookings');
+            if (b) bookings = JSON.parse(b);
+            const c = localStorage.getItem('hostel_complaints');
+            if (c) complaints = JSON.parse(c);
+            const a = localStorage.getItem('hostel_announcements');
+            if (a) announcements = JSON.parse(a);
+        }
+
+        function updateUIForUser() {
+            if (currentUser) {
+                document.getElementById('authButtons').style.display = 'none';
+                document.getElementById('userInfo').style.display = 'flex';
+                document.getElementById('userNameDisplay').innerHTML = `<i class="fas fa-user-circle"></i> ${currentUser.full_name.split(' ')[0]}`;
+                if (currentUser.role === 'admin') loadPage('admin');
+                else if (currentUser.role === 'member') loadPage('member');
+            } else {
+                document.getElementById('authButtons').style.display = 'flex';
+                document.getElementById('userInfo').style.display = 'none';
+                loadPage('home');
+            }
+        }
+
+        function showLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
+        function showRegisterModal() { document.getElementById('registerModal').style.display = 'flex'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function login() {
+            const identifier = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const user = users.find(u => (u.email === identifier || u.username === identifier) && u.password === password);
+            if (user) {
+                currentUser = user;
+                closeModal('loginModal');
+                updateUIForUser();
+                showToast(`Welcome back, ${user.full_name}!`);
+                document.getElementById('loginEmail').value = '';
+                document.getElementById('loginPassword').value = '';
+            } else {
+                showToast('Invalid credentials! Try admin/admin123', 'error');
+            }
+        }
+
+        function register() {
+            const newUser = {
+                id: users.length + 1,
+                username: document.getElementById('regUsername').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPassword').value,
+                full_name: document.getElementById('regName').value,
+                phone: document.getElementById('regPhone').value,
+                role: 'member',
+                avatar: '👨‍🎓',
+                join_date: new Date().toISOString().split('T')[0]
+            };
+            if (users.find(u => u.email === newUser.email)) {
+                showToast('Email already exists!', 'error');
+                return;
+            }
+            users.push(newUser);
+            saveData();
+            showToast('Registration successful! Please login.');
+            closeModal('registerModal');
+            showLoginModal();
+        }
+
+        function logout() {
+            currentUser = null;
+            updateUIForUser();
+            showToast('Logged out successfully');
+        }
+
+        // ============ PAGE RENDERING ============
+        function loadPage(page) {
+            const container = document.getElementById('appContainer');
+            if (page === 'home') renderHome(container);
+            else if (page === 'rooms') renderRooms(container);
+            else if (page === 'amenities') renderAmenities(container);
+            else if (page === 'contact') renderContact(container);
+            else if (page === 'member' && currentUser?.role === 'member') renderMemberDashboard(container);
+            else if (page === 'admin' && currentUser?.role === 'admin') renderAdminDashboard(container);
+            else if (!currentUser) renderHome(container);
+        }
+
+        function renderHome(container) {
+            const availableRooms = rooms.filter(r => r.status === 'available');
+            container.innerHTML = `
+                <div class="hero fade-up">
+                    <h1><i class="fas fa-home"></i> Premium Hostel & PG Accommodation</h1>
+                    <p style="font-size: 1.2rem; color: var(--gray-600); margin-top: 0.5rem;">Luxury living for students near CMR Medical College, Hyderabad</p>
+                    <div class="stats-grid">
+                        <div class="stat-card float"><i class="fas fa-bed" style="font-size: 2rem; color: var(--primary);"></i><h3>${rooms.length}+ Rooms</h3><p>AC & Non-AC Options</p></div>
+                        <div class="stat-card float"><i class="fas fa-users" style="font-size: 2rem; color: var(--primary);"></i><h3>85+ Students</h3><p>Happy Residents</p></div>
+                        <div class="stat-card float"><i class="fas fa-star" style="font-size: 2rem; color: var(--primary);"></i><h3>4.8 ★ Rating</h3><p>Google Reviews</p></div>
+                        <div class="stat-card float"><i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary);"></i><h3>24/7 Security</h3><p>CCTV & Guards</p></div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 1.5rem;">🔥 Currently Available Rooms</h2>
+                    <div class="rooms-grid">
+                        ${availableRooms.slice(0, 3).map(room => `
+                            <div class="room-card">
+                                <div class="room-image"><i class="fas ${room.ac_type === 'ac' ? 'fa-snowflake' : 'fa-fan'}"></i> ${room.image_icon}</div>
+                                <div class="room-info">
+                                    <h3>Room ${room.room_number} • ${room.room_type}</h3>
+                                    <p><i class="fas fa-tag"></i> ${room.ac_type.toUpperCase()}</p>
+                                    <p class="room-price">₹${room.price_per_month.toLocaleString()}<span style="font-size: 0.9rem;">/month</span></p>
+                                    <p>${room.description.substring(0, 80)}...</p>
+                                    <div style="margin-top: 0.5rem;">${room.amenities.slice(0, 3).map(a => `<span class="badge" style="background: #e0e7ff;">${a}</span>`).join(' ')}</div>
+                                    <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="${currentUser ? `bookRoom(${room.id})` : 'showLoginModal()'}">${currentUser ? 'Book Now' : 'Login to Book'}</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    ${availableRooms.length > 3 ? `<div style="text-align: center; margin-top: 2rem;"><button class="btn btn-outline" onclick="loadPage('rooms')">View All ${availableRooms.length} Rooms →</button></div>` : ''}
+                </div>
+            `;
+        }
+
+        function renderRooms(container) {
+            container.innerHTML = `
+                <h2 style="font-size: 2rem; margin-bottom: 1rem;">🏠 All Rooms & Pricing</h2>
+                <div class="rooms-grid">
+                    ${rooms.map(room => `
+                        <div class="room-card">
+                            <div class="room-image"><i class="fas ${room.ac_type === 'ac' ? 'fa-snowflake' : 'fa-fan'}"></i> ${room.image_icon}</div>
+                            <div class="room-info">
+                                <h3>Room ${room.room_number} • ${room.room_type}</h3>
+                                <p><i class="fas fa-layer-group"></i> ${room.floor} • ${room.size}</p>
+                                <p class="room-price">₹${room.price_per_month.toLocaleString()}/month</p>
+                                <p>${room.description}</p>
+                                <div style="margin: 0.5rem 0;">${room.amenities.map(a => `<span class="badge" style="background: #e0e7ff;">${a}</span>`).join(' ')}</div>
+                                <span class="badge ${room.status === 'available' ? 'badge-available' : 'badge-booked'}">${room.status === 'available' ? '✓ Available' : 'Booked'}</span>
+                                ${room.status === 'available' ? `<button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="${currentUser ? `bookRoom(${room.id})` : 'showLoginModal()'}">${currentUser ? 'Book Now' : 'Login to Book'}</button>` : '<button class="btn" style="margin-top: 1rem; width: 100%; background: #ccc;" disabled>Not Available</button>'}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderAmenities(container) {
+            container.innerHTML = `
+                <div class="hero fade-up">
+                    <h2><i class="fas fa-concierge-bell"></i> Our Premium Amenities</h2>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card"><i class="fas fa-utensils" style="font-size: 2.5rem; color: var(--primary);"></i><h3>Homely Food</h3><p>Fresh vegetarian meals - Breakfast, Lunch, Dinner</p></div>
+                    <div class="stat-card"><i class="fas fa-wifi" style="font-size: 2.5rem; color: var(--primary);"></i><h3>High-Speed WiFi</h3><p>100 Mbps dedicated connection</p></div>
+                    <div class="stat-card"><i class="fas fa-tint" style="font-size: 2.5rem; color: var(--primary);"></i><h3>RO Water</h3><p>24/7 purified drinking water</p></div>
+                    <div class="stat-card"><i class="fas fa-tshirt" style="font-size: 2.5rem; color: var(--primary);"></i><h3>Laundry Service</h3><p>Washing machine available</p></div>
+                    <div class="stat-card"><i class="fas fa-dumbbell" style="font-size: 2.5rem; color: var(--primary);"></i><h3>Gym Access</h3><p>Basic fitness equipment</p></div>
+                    <div class="stat-card"><i class="fas fa-tv" style="font-size: 2.5rem; color: var(--primary);"></i><h3>Common Room</h3><p>TV, indoor games, relaxing area</p></div>
+                    <div class="stat-card"><i class="fas fa-bolt" style="font-size: 2.5rem; color: var(--primary);"></i><h3>Power Backup</h3><p>Inverter for each room</p></div>
+                    <div class="stat-card"><i class="fas fa-parking" style="font-size: 2.5rem; color: var(--primary);"></i><h3>Parking</h3><p>Bike & Car parking available</p></div>
+                </div>
+            `;
+        }
+
+        function renderContact(container) {
+            container.innerHTML = `
+                <div class="hero fade-up">
+                    <h2>📞 Contact Us</h2>
+                    <p><i class="fas fa-map-marker-alt"></i> CMR Educational Institutions, Officers Colony, Kandlakoya, Kompally, Hyderabad - 501401</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210 | +91 87654 32109</p>
+                    <p><i class="fas fa-envelope"></i> info@narayanaswamyhostel.com</p>
+                    <p><i class="fas fa-clock"></i> Office Hours: 9 AM - 8 PM (Mon-Sat)</p>
+                    <div style="margin-top: 2rem;"><button class="btn btn-primary" onclick="showLoginModal()">Enquire Now</button></div>
+                </div>
+            `;
+        }
+
+        function renderMemberDashboard(container) {
+            const myBookings = bookings.filter(b => b.user_id === currentUser.id);
+            const myComplaints = complaints.filter(c => c.user_id === currentUser.id);
+            const availableRooms = rooms.filter(r => r.status === 'available');
+            
+            container.innerHTML = `
+                <div style="display: grid; gap: 2rem;">
+                    <div style="background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 2rem; border-radius: 1.5rem;">
+                        <h2>Welcome back, ${currentUser.full_name}! 👋</h2>
+                        <p>Member since ${currentUser.join_date}</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card"><i class="fas fa-bed"></i><h3>Active Bookings</h3><p style="font-size: 2rem;">${myBookings.filter(b => b.status === 'approved').length}</p></div>
+                        <div class="stat-card"><i class="fas fa-door-open"></i><h3>Available Rooms</h3><p style="font-size: 2rem;">${availableRooms.length}</p></div>
+                        <div class="stat-card"><i class="fas fa-exclamation-triangle"></i><h3>Open Complaints</h3><p style="font-size: 2rem;">${myComplaints.filter(c => c.status !== 'resolved').length}</p></div>
+                        <div class="stat-card"><i class="fas fa-rupee-sign"></i><h3>Total Paid</h3><p style="font-size: 1.5rem;">₹${payments.filter(p => p.user_id === currentUser.id).reduce((sum, p) => sum + p.amount, 0).toLocaleString()}</p></div>
+                    </div>
+
+                    <div><h2>🏠 Quick Actions</h2><div style="display: flex; gap: 1rem; flex-wrap: wrap;"><button class="btn btn-primary" onclick="loadPage('rooms')">Browse Rooms</button><button class="btn btn-outline" onclick="showBookingHistory()">My Bookings</button><button class="btn btn-outline" onclick="showComplaintForm()">Raise Complaint</button></div></div>
+
+                    <div><h2>📢 Recent Announcements</h2>${announcements.slice(0, 2).map(a => `<div style="background: var(--gray-100); padding: 1rem; border-radius: 0.75rem; margin: 0.5rem 0;"><small>${a.created_at}</small><h3>${a.title}</h3><p>${a.content}</p></div>`).join('')}</div>
+                </div>
+            `;
+        }
+
+        function renderAdminDashboard(container) {
+            const pendingBookings = bookings.filter(b => b.status === 'pending');
+            const pendingComplaints = complaints.filter(c => c.status !== 'resolved');
+            container.innerHTML = `
+                <div style="display: grid; gap: 2rem;">
+                    <div style="background: linear-gradient(135deg, var(--dark), var(--gray-800)); color: white; padding: 2rem; border-radius: 1.5rem;">
+                        <h2>Admin Dashboard, ${currentUser.full_name}</h2>
+                        <p>Manage hostel operations from here</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card"><h3>Total Rooms</h3><p style="font-size: 2rem;">${rooms.length}</p></div>
+                        <div class="stat-card"><h3>Pending Bookings</h3><p style="font-size: 2rem;">${pendingBookings.length}</p><button class="btn btn-primary" style="margin-top: 0.5rem;" onclick="viewBookings()">Review</button></div>
+                        <div class="stat-card"><h3>Pending Complaints</h3><p style="font-size: 2rem;">${pendingComplaints.length}</p><button class="btn btn-primary" onclick="viewComplaints()">Review</button></div>
+                        <div class="stat-card"><h3>Total Members</h3><p style="font-size: 2rem;">${users.filter(u => u.role === 'member').length}</p></div>
+                    </div>
+                    <div><h2>Quick Actions</h2><div style="display: flex; gap: 1rem; flex-wrap: wrap;"><button class="btn btn-primary" onclick="showAddRoom()">+ Add Room</button><button class="btn btn-outline" onclick="viewAllRooms()">Manage Rooms</button><button class="btn btn-outline" onclick="postAnnouncement()">Post Announcement</button></div></div>
+                </div>
+            `;
+        }
+
+        // Member actions
+        window.bookRoom = (roomId) => {
+            const room = rooms.find(r => r.id === roomId);
+            if (!currentUser) { showLoginModal(); return; }
+            const newBooking = { id: bookings.length + 1, user_id: currentUser.id, room_id: roomId, check_in: new Date().toISOString().split('T')[0], duration: 1, total_amount: room.price_per_month, status: 'pending', payment_status: 'pending', booking_date: new Date().toISOString().split('T')[0] };
+            bookings.push(newBooking);
+            saveData();
+            showToast('Booking request sent to admin!');
+            if (currentUser.role === 'member') loadPage('member');
+        };
+
+        window.showBookingHistory = () => {
+            const myBookings = bookings.filter(b => b.user_id === currentUser.id);
+            alert(`Your Bookings:\n${myBookings.map(b => `Room ${b.room_id} - ${b.status} - ₹${b.total_amount}`).join('\n')}`);
+        };
+
+        window.showComplaintForm = () => {
+            const title = prompt('Complaint Title:');
+            const desc = prompt('Describe your issue:');
+            if (title && desc) {
+                complaints.push({ id: complaints.length + 1, user_id: currentUser.id, title, description: desc, status: 'pending', created_at: new Date().toISOString().split('T')[0], response: null });
+                saveData();
+                showToast('Complaint submitted!');
+                loadPage('member');
+            }
+        };
+
+        // Admin actions
+        window.viewBookings = () => { alert(`Pending Bookings:\n${bookings.filter(b => b.status === 'pending').map(b => `Booking #${b.id} - User ${b.user_id} - Room ${b.room_id}`).join('\n') || 'None'}`); };
+        window.viewComplaints = () => { alert(`Pending Complaints:\n${complaints.filter(c => c.status !== 'resolved').map(c => `${c.title}: ${c.description}`).join('\n') || 'None'}`); };
+        window.showAddRoom = () => { alert('Add Room feature - In real app would show form'); };
+        window.viewAllRooms = () => { loadPage('rooms'); };
+        window.postAnnouncement = () => {
+            const title = prompt('Announcement Title:');
+            const content = prompt('Announcement Content:');
+            if (title && content) {
+                announcements.unshift({ id: announcements.length + 1, title, content, priority: 'medium', created_at: new Date().toISOString().split('T')[0], author: currentUser.full_name });
+                saveData();
+                showToast('Announcement posted!');
+                if (currentUser.role === 'admin') loadPage('admin');
+            }
+        };
+
+        loadData();
+        updateUIForUser();
+    </script>
+</body>
+</html>
